@@ -1,17 +1,19 @@
 #include <iostream>
 using namespace std;
-int FibonacciIterative(int n) {
+int FibonacciDP(int n) {
     if (n <= 1)
         return n;
     
-    int prev = 0;
-    int curr = 1;
+    int* fib = new int[n + 1];
+    fib[0] = 0;
+    fib[1] = 1;
     
     for (int i = 2; i <= n; i++) {
-        int next = prev + curr;
-        prev = curr;
-        curr = next;
+        fib[i] = fib[i - 1] + fib[i - 2];
     }
     
-    return curr;
+    int result = fib[n];
+    delete[] fib;
+    
+    return result;
 }
